@@ -36,11 +36,13 @@ function App() {
   const pendingOrders = orders.filter(o => o.status === OrderStatus.PENDING).length;
 
   // Handlers
-  const handleSyncSuccess = () => {
-    // Simulate adding new orders after "Scraping"
-    const newOrders = generateMockOrders(15);
-    setOrders(prev => [...newOrders, ...prev]);
-    setLastSync(new Date());
+  const handleSyncSuccess = (newOrders: Order[]) => {
+    // Merge real scraped orders with existing ones (or replace, depending on preference)
+    // Here we prepend them to show latest first
+    if (newOrders && newOrders.length > 0) {
+        setOrders(prev => [...newOrders, ...prev]);
+        setLastSync(new Date());
+    }
   };
 
   const handleAIAnalysis = async () => {
