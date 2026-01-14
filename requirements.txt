@@ -2,8 +2,8 @@ streamlit
 pandas
 plotly
 playwright
-openpyxl
 fastapi
 uvicorn
 python-multipart
 pydantic
+nest_asyncio
